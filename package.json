@@ -1,0 +1,10 @@
+{
+  "name": "klammern",
+  "version": "1.0.0",
+  "description": "Übungstool Vorzeichen bei Klammern, Klasse 7 Gymnasium",
+  "scripts": {
+    "test": "node test.js",
+    "start": "open index.html"
+  },
+  "private": true
+}

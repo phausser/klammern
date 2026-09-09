@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Vorzeichen-Training · Klammern · Klasse 7</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="heft" id="app">
+      <header class="kopf">
+        <p class="heft-label">Mathematik · Klasse 7</p>
+        <h1>Vorzeichen bei Klammern</h1>
+        <p class="untertitel">Auflösen · Distributivgesetz · Ausklammern</p>
+        <div id="progress" class="progress" hidden>
+          <span class="progress-label">Serie</span>
+          <div id="dots" class="dots" aria-live="polite"></div>
+          <span id="score" class="score">0/10</span>
+        </div>
+      </header>
+
+      <section id="screen-start" class="screen">
+        <p class="lead">
+          Du brauchst <strong>10 richtige Antworten hintereinander</strong>.
+          Ein Fehler setzt die Serie auf null zurück.
+        </p>
+
+        <h2>Merkregeln</h2>
+        <ul class="regeln">
+          <li>
+            <span class="regel-name">Minus vor der Klammer</span>
+            dreht <em>jedes</em> Vorzeichen um:
+            <span class="math">−(a − b) = −a + b</span>
+          </li>
+          <li>
+            <span class="regel-name">Plus vor der Klammer</span>
+            ändert nichts:
+            <span class="math">+(a − b) = a − b</span>
+            und
+            <span class="math">+(−a) = −a</span>
+          </li>
+          <li>
+            <span class="regel-name">Minus mal Minus</span>
+            ergibt Plus:
+            <span class="math">−(−a) = a</span>
+            und
+            <span class="math">a − (−b) = a + b</span>
+          </li>
+          <li>
+            <span class="regel-name">Distributivgesetz</span>
+            — der Faktor gilt für jeden Term:
+            <span class="math">k(a + b) = ka + kb</span>
+          </li>
+        </ul>
+
+        <p class="hinweis">
+          Wenn Zahlen in der Klammer stehen: zuerst <strong>ohne Klammern schreiben</strong>,
+          nicht gleich zusammenrechnen. Genau dort sitzt der Vorzeichenfehler.
+        </p>
+
+        <button type="button" id="btn-start" class="btn haupt">Los geht’s</button>
+      </section>
+
+      <section id="screen-play" class="screen" hidden>
+        <p id="instruction" class="instruction"></p>
+        <div id="prompt" class="expr"></div>
+
+        <div class="gleich">=</div>
+
+        <form id="answer-form" class="answer" autocomplete="off">
+          <div id="answer-row" class="answer-row"></div>
+          <p class="legend">Zuerst jedes Vorzeichen wählen. Die 1 vor <span class="math">x</span> darfst du weglassen.</p>
+          <p id="form-hint" class="form-hint" hidden></p>
+          <div class="aktionen">
+            <button type="submit" id="btn-check" class="btn haupt">Prüfen</button>
+            <button type="button" id="btn-next" class="btn" hidden>Nächste Aufgabe</button>
+          </div>
+        </form>
+
+        <div id="feedback" class="feedback" hidden></div>
+      </section>
+
+      <section id="screen-win" class="screen" hidden>
+        <p class="stempel">Geschafft</p>
+        <h2>10 richtige in Folge</h2>
+        <p class="lead">
+          Du hast die Vorzeichen beim Auflösen und Ausklammern sicher gesetzt.
+        </p>
+        <ul class="regeln compact">
+          <li><span class="math">−(a − b) = −a + b</span></li>
+          <li><span class="math">+(−a) = −a</span> · <span class="math">−(−a) = a</span></li>
+          <li><span class="math">k(a + b) = ka + kb</span></li>
+        </ul>
+        <button type="button" id="btn-again" class="btn haupt">Nochmal üben</button>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>

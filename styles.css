@@ -1,0 +1,419 @@
+:root {
+  --paper: #f3ead2;
+  --paper-edge: #e4d4b0;
+  --ink: #1c140c;
+  --ink-soft: #5a4a3a;
+  --red: #c42b1c;
+  --red-soft: #e7b0a8;
+  --green: #2a6b45;
+  --green-soft: #d5e6d4;
+  --line: rgba(50, 90, 150, 0.16);
+  --dash: #8a7458;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  background: #cbb892;
+  background-image: radial-gradient(ellipse at top, #d8c49a, #b89d6e);
+  color: var(--ink);
+  font-family: "Avenir Next", "Segoe UI", sans-serif;
+  line-height: 1.45;
+  padding: 1.5rem 1rem 3rem;
+}
+
+.heft {
+  max-width: 40rem;
+  margin: 0 auto;
+  background-color: var(--paper);
+  background-image:
+    linear-gradient(90deg, transparent 2.7rem, var(--red-soft) 2.7rem, var(--red-soft) 2.85rem, transparent 2.85rem),
+    repeating-linear-gradient(
+      to bottom,
+      transparent 0,
+      transparent 1.95rem,
+      var(--line) 1.95rem,
+      var(--line) 2rem
+    );
+  border-radius: 0 3px 3px 0;
+  box-shadow:
+    8px 12px 0 rgba(60, 40, 10, 0.08),
+    0 18px 40px rgba(60, 40, 10, 0.22);
+  padding: 1.8rem 1.8rem 2.4rem 3.6rem;
+  min-height: 36rem;
+}
+
+.kopf {
+  margin-bottom: 1.4rem;
+}
+
+.heft-label {
+  margin: 0;
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--red);
+  font-weight: 600;
+}
+
+h1 {
+  margin: 0.15rem 0 0;
+  font-family: Palatino, "Iowan Old Style", "Times New Roman", serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: 2.05rem;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+
+h2 {
+  margin: 1.2rem 0 0.6rem;
+  font-family: Palatino, "Iowan Old Style", "Times New Roman", serif;
+  font-size: 1.15rem;
+  font-weight: 600;
+}
+
+.untertitel {
+  margin: 0.2rem 0 0.8rem;
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+}
+
+.progress {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  margin-top: 0.8rem;
+}
+
+.progress-label,
+.score {
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.dots {
+  display: flex;
+  gap: 0.28rem;
+  flex: 1;
+}
+
+.dot {
+  width: 0.85rem;
+  height: 0.85rem;
+  border: 1.5px solid var(--dash);
+  border-radius: 50%;
+  background: transparent;
+}
+
+.dot.on {
+  background: var(--green);
+  border-color: var(--green);
+}
+
+.dot.lost {
+  background: var(--red);
+  border-color: var(--red);
+}
+
+.lead {
+  margin: 0 0 1rem;
+  max-width: 34em;
+}
+
+.regeln {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.regeln li {
+  margin: 0 0 0.85rem;
+  padding-left: 0;
+}
+
+.regel-name {
+  display: block;
+  font-weight: 600;
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 0.1rem;
+}
+
+.math {
+  font-family: Palatino, "Iowan Old Style", "Times New Roman", serif;
+  font-size: 1.15em;
+  white-space: nowrap;
+}
+
+.hinweis {
+  background: rgba(196, 43, 28, 0.08);
+  border-left: 3px solid var(--red);
+  padding: 0.7rem 0.9rem;
+  font-size: 0.95rem;
+}
+
+.instruction {
+  margin: 0 0 0.8rem;
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+}
+
+.expr {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: center;
+  gap: 0.12em 0.18em;
+  font-family: Palatino, "Iowan Old Style", "Times New Roman", serif;
+  font-size: 2.35rem;
+  min-height: 3.2rem;
+  margin: 0.4rem 0 0.2rem;
+}
+
+.expr .s.minus,
+.answer-row .s.minus {
+  color: var(--red);
+}
+
+.expr .p {
+  padding: 0 0.04em;
+}
+
+.gleich {
+  text-align: center;
+  font-family: Palatino, "Iowan Old Style", serif;
+  font-size: 1.8rem;
+  margin: 0.2rem 0 0.5rem;
+  color: var(--ink-soft);
+}
+
+.answer-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem 0.55rem;
+  min-height: 4.2rem;
+}
+
+.sign-pair {
+  display: inline-flex;
+  border: 1.5px dashed var(--dash);
+  border-radius: 6px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.35);
+}
+
+.sign-btn {
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 0;
+  background: transparent;
+  color: var(--ink-soft);
+  font-family: Palatino, "Iowan Old Style", serif;
+  font-size: 1.45rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.sign-btn + .sign-btn {
+  border-left: 1px solid rgba(138, 116, 88, 0.35);
+}
+
+.sign-btn.selected.plus {
+  background: var(--green-soft);
+  color: var(--green);
+}
+
+.sign-btn.selected.minus {
+  background: #f3d4ce;
+  color: var(--red);
+}
+
+.sign-pair.ok {
+  border-style: solid;
+  border-color: var(--green);
+}
+
+.sign-pair.bad {
+  border-style: solid;
+  border-color: var(--red);
+}
+
+.sign-btn:disabled {
+  cursor: default;
+}
+
+.coeff {
+  width: 3.1rem;
+  font-family: Palatino, "Iowan Old Style", serif;
+  font-size: 1.7rem;
+  text-align: center;
+  border: none;
+  border-bottom: 2px solid var(--dash);
+  background: transparent;
+  color: var(--ink);
+  padding: 0.15rem 0;
+}
+
+.coeff:focus {
+  outline: none;
+  border-bottom-color: var(--ink);
+}
+
+.coeff.ok {
+  border-bottom-color: var(--green);
+  color: var(--green);
+}
+
+.coeff.bad {
+  border-bottom-color: var(--red);
+  color: var(--red);
+}
+
+.term-var,
+.static-math {
+  font-family: Palatino, "Iowan Old Style", serif;
+  font-size: 1.9rem;
+}
+
+.aktionen {
+  display: flex;
+  justify-content: center;
+  gap: 0.6rem;
+  margin-top: 1.3rem;
+}
+
+.btn {
+  font-family: "Avenir Next", "Segoe UI", sans-serif;
+  font-size: 1rem;
+  padding: 0.55rem 1.1rem;
+  border: 1.5px solid var(--ink);
+  background: transparent;
+  color: var(--ink);
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.btn.haupt {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.btn:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
+.legend {
+  text-align: center;
+  color: var(--ink-soft);
+  font-size: 0.85rem;
+  margin: 0.7rem 0 0;
+}
+
+.form-hint {
+  text-align: center;
+  color: var(--red);
+  font-size: 0.9rem;
+  margin: 0.6rem 0 0;
+}
+
+.feedback {
+  margin-top: 1.1rem;
+  padding: 0.8rem 1rem;
+  border-left: 3px solid var(--ink);
+  background: rgba(255, 255, 255, 0.35);
+}
+
+.feedback.richtig {
+  border-left-color: var(--green);
+  color: var(--green);
+  font-weight: 600;
+}
+
+.feedback.falsch {
+  border-left-color: var(--red);
+}
+
+.feedback .loesung {
+  font-family: Palatino, "Iowan Old Style", serif;
+  font-size: 1.2rem;
+  margin: 0.35rem 0 0.5rem;
+}
+
+.stempel {
+  display: inline-block;
+  margin: 0.4rem 0 0.2rem;
+  padding: 0.2rem 0.7rem;
+  border: 3px solid var(--green);
+  color: var(--green);
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-weight: 700;
+  transform: rotate(-8deg);
+}
+
+.regeln.compact li {
+  margin-bottom: 0.35rem;
+}
+
+.shake {
+  animation: shake 0.4s ease;
+}
+
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-6px);
+  }
+  75% {
+    transform: translateX(6px);
+  }
+}
+
+@media (max-width: 640px) {
+  body {
+    padding: 0.6rem 0.5rem 2rem;
+  }
+
+  .heft {
+    padding: 1.3rem 1.1rem 2rem;
+    background-image: repeating-linear-gradient(
+      to bottom,
+      transparent 0,
+      transparent 1.95rem,
+      var(--line) 1.95rem,
+      var(--line) 2rem
+    );
+  }
+
+  h1 {
+    font-size: 1.65rem;
+  }
+
+  .expr {
+    font-size: 1.7rem;
+  }
+
+  .coeff {
+    font-size: 1.4rem;
+    width: 2.6rem;
+  }
+}
