@@ -531,6 +531,7 @@ function setPlayChrome(mode) {
 }
 
 function loadTask() {
+  if (!ui.startedAt) ui.startedAt = Date.now();
   ui.task = generateTask(ui.streak, ui.lastKey);
   ui.lastKey = ui.task.key;
   ui.locked = false;
@@ -549,13 +550,13 @@ function loadTask() {
 function startGame() {
   ui.streak = 0;
   ui.lastKey = "";
-  ui.startedAt = Date.now();
+  ui.startedAt = 0;
   showScreen("play");
   loadTask();
 }
 
 function showWin() {
-  const elapsed = Date.now() - ui.startedAt;
+  const elapsed = ui.startedAt ? Date.now() - ui.startedAt : 0;
   $("win-time").textContent = "Das hat " + formatDuration(elapsed) + " gedauert.";
   showScreen("win");
 }
@@ -605,6 +606,7 @@ function onCheck(event) {
     setTimeout(loadTask, 750);
   } else {
     ui.streak = 0;
+    ui.startedAt = 0;
     renderDots(true);
     fb.className = "feedback falsch";
     fb.innerHTML =
