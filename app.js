@@ -379,6 +379,24 @@ function missingInput(task, values) {
   return null;
 }
 
+function unit(n, one, many) {
+  return n === 1 ? "1 " + one : n + " " + many;
+}
+
+function formatDuration(ms) {
+  const totalSec = Math.max(0, Math.round(Number(ms) / 1000));
+  const hours = Math.floor(totalSec / 3600);
+  const minutes = Math.floor((totalSec % 3600) / 60);
+  const seconds = totalSec % 60;
+  const parts = [];
+  if (hours) parts.push(unit(hours, "Stunde", "Stunden"));
+  if (minutes) parts.push(unit(minutes, "Minute", "Minuten"));
+  if (seconds || parts.length === 0) parts.push(unit(seconds, "Sekunde", "Sekunden"));
+  if (parts.length === 1) return parts[0];
+  if (parts.length === 2) return parts[0] + " und " + parts[1];
+  return parts[0] + ", " + parts[1] + " und " + parts[2];
+}
+
 const Klammern = {
   TARGET,
   generateTask,
@@ -391,6 +409,7 @@ const Klammern = {
   genDistributiv,
   genAusklammern,
   solutionText,
+  formatDuration,
 };
 
 if (typeof module !== "undefined" && module.exports) {
@@ -402,6 +421,7 @@ const ui = {
   task: null,
   lastKey: "",
   locked: false,
+  startedAt: 0,
 };
 
 function $(id) {
@@ -529,8 +549,15 @@ function loadTask() {
 function startGame() {
   ui.streak = 0;
   ui.lastKey = "";
+  ui.startedAt = Date.now();
   showScreen("play");
   loadTask();
+}
+
+function showWin() {
+  const elapsed = Date.now() - ui.startedAt;
+  $("win-time").textContent = "Das hat " + formatDuration(elapsed) + " gedauert.";
+  showScreen("win");
 }
 
 function onCheck(event) {
@@ -572,7 +599,7 @@ function onCheck(event) {
     fb.textContent = ui.streak === TARGET ? "Richtig — das war die zehnte!" : "Richtig.";
     renderAnswerRow(ui.task, review);
     if (ui.streak >= TARGET) {
-      setTimeout(() => showScreen("win"), 700);
+      setTimeout(showWin, 700);
       return;
     }
     setTimeout(loadTask, 750);

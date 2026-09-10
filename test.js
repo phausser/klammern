@@ -104,4 +104,16 @@ for (let i = 0; i < 80; i++) {
   assert.ok(task.promptHtml.includes("minus"));
 }
 
+assert.strictEqual(K.formatDuration(0), "0 Sekunden");
+assert.strictEqual(K.formatDuration(400), "0 Sekunden");
+assert.strictEqual(K.formatDuration(1000), "1 Sekunde");
+assert.strictEqual(K.formatDuration(45000), "45 Sekunden");
+assert.strictEqual(K.formatDuration(60000), "1 Minute");
+assert.strictEqual(K.formatDuration(61000), "1 Minute und 1 Sekunde");
+assert.strictEqual(K.formatDuration(125000), "2 Minuten und 5 Sekunden");
+assert.strictEqual(K.formatDuration(3600000), "1 Stunde");
+assert.strictEqual(K.formatDuration(3723000), "1 Stunde, 2 Minuten und 3 Sekunden");
+assert.strictEqual(K.formatDuration(7320000), "2 Stunden und 2 Minuten");
+assert.strictEqual(K.formatDuration(7322000), "2 Stunden, 2 Minuten und 2 Sekunden");
+
 console.log("OK", generated, "tasks,", [...types].join(", "));

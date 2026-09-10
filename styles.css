@@ -367,6 +367,14 @@ h2 {
   transform: rotate(-8deg);
 }
 
+.win-time {
+  margin: 0.35rem 0 1rem;
+  font-family: Palatino, "Iowan Old Style", "Times New Roman", serif;
+  font-style: italic;
+  font-size: 1.15rem;
+  color: var(--green);
+}
+
 .regeln.compact li {
   margin-bottom: 0.35rem;
 }
